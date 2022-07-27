@@ -61,20 +61,35 @@ const theme = createTheme({
     MuiDialog: {
       styleOverrides: {
         paper: {
-          borderRadius: '12px'
-        },
+          borderRadius: 16,
+          boxShadow: '0px 0px 16px rgba(0, 0, 0, 0.1)',
+          padding: 15,
+          border: '1px solid #EAEAEA'
 
+        },
+      }
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          color: 'rgba(0, 0, 0, 0.87)',
+          background: 'white',
+          borderRadius: 16,
+          boxShadow: '0px 0px 16px rgba(0, 0, 0, 0.1)',
+          border: '1px solid #EAEAEA',
+          padding: 16,
+        }
       }
     },
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: 'none',
-          borderRadius: '44px',
-          height: '44px',
-          fontSize: '14px',
-          fontWeight: '700',
-          lineHeight: '20px',
+          borderRadius: 44,
+          height: 44,
+          fontSize: 14,
+          fontWeight: 700,
+          lineHeight: 1.5,
           padding: '9px 20.5px',
           textDecoration: 'none',
           ":disabled": {

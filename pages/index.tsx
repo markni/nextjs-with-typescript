@@ -4,8 +4,9 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from '../src/Link';
+import QuestionMark from '@mui/icons-material/QuestionMark';
 
-import {Button, Grid, TextField} from "@mui/material";
+import {Button, Grid, IconButton, TextField, Tooltip} from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
@@ -54,17 +55,12 @@ const Home: NextPage = () => {
               </Typography>
           </Link>
 
-          <Typography variant={"h2"}  >
-            Full Width Buttons
-          </Typography>
+
           <Button variant="contained" disableElevation color={'primary'} fullWidth>Primary</Button>
           <Button variant="outlined" disableElevation color={'primary'} fullWidth>Primary outlined</Button>
           <Button variant="contained" disableElevation color={'primary'} disabled fullWidth>Disabled</Button>
           <Button variant="contained" disableElevation color={'tertiary'} fullWidth>Tertiary (custom color)</Button>
 
-          <Typography variant={"h2"}  >
-              Small Buttons
-          </Typography>
 
           <Button variant="contained" disableElevation color={'tertiary'} >Apply</Button>
 
@@ -86,7 +82,7 @@ const Home: NextPage = () => {
           </Typography>
 
           <Typography variant={'total'} >
-              Total: $30.00
+              Total: $30.00 (total variant)
           </Typography>
 
           <Typography variant={'h2'} >
@@ -110,34 +106,39 @@ const Home: NextPage = () => {
               Delete address
           </Typography>
 
-          <Link href="/about" color="secondary">
 
           <Typography color={'secondary'} variant={'button'} >
               Add discount
           </Typography>
-          </Link>
 
+          <Typography color={'primary'} variant={'button'} >
+              Edit
+          </Typography>
 
+          <Typography sx={{textDecoration: 'none'}} color={'primary'} variant={'button'} >
+              Edit
+          </Typography>
 
           <Button variant="outlined" onClick={handleClickOpen}>
               Responsive dialog example
           </Button>
+
           <Dialog
+              hideBackdrop
+              fullWidth
+              maxWidth={'xs'}
               fullScreen={fullScreen}
               open={open}
               onClose={handleClose}
-              aria-labelledby="responsive-dialog-title"
           >
               <DialogTitle id="responsive-dialog-title">
                   <Typography variant={'h2'}>New Address</Typography>
               </DialogTitle>
               <DialogContent>
-                  <TextField fullWidth label="First Name" variant="outlined" placeholder={'First name'} />
-                  <TextField fullWidth label="First Name" variant="outlined" placeholder={'First name'} />
 
               </DialogContent>
               <DialogActions>
-                  <Grid container spacing={2} xs={6}>
+                  <Grid container spacing={2} xs={9}>
                       <Grid item xs={4}>
                           <Button fullWidth disableElevation variant="outlined" autoFocus onClick={handleClose}>
                               Cancel
@@ -151,6 +152,14 @@ const Home: NextPage = () => {
                   </Grid>
               </DialogActions>
           </Dialog>
+
+          <Typography>Click on the icon to see tooltip
+              <Tooltip enterTouchDelay={0} title="It’s really simple to understand how card linking works.">
+                  <IconButton>
+                      <QuestionMark />
+                  </IconButton>
+              </Tooltip>
+          </Typography>
 
       </Box>
     </Container>
