@@ -63,10 +63,33 @@ const theme = createTheme({
         paper: {
           borderRadius: 16,
           boxShadow: '0px 0px 16px rgba(0, 0, 0, 0.1)',
-          padding: 15,
+          padding: 16,
           border: '1px solid #EAEAEA'
-
         },
+      }
+    },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          fontWeight: 700,
+          fontSize: 18,
+          lineHeight: 1.5,
+          padding: 16,
+        },
+      }
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          padding: '16px !important', //must keep !important: https://github.com/mui/material-ui/issues/27851
+        }
+      }
+    },
+    MuiDialogActions: {
+      styleOverrides: {
+        root: {
+          padding: '16px 16px 16px 120px',
+        }
       }
     },
     MuiTooltip: {
@@ -124,7 +147,6 @@ const theme = createTheme({
       fontWeight: 700,
       fontSize: 18,
       lineHeight: 1.5,
-      marginTop: '8px'
     },
     h3: undefined,
     h4: undefined,

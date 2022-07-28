@@ -6,7 +6,17 @@ import Box from '@mui/material/Box';
 import Link from '../src/Link';
 import QuestionMark from '@mui/icons-material/QuestionMark';
 
-import {Button, Grid, IconButton, TextField, Tooltip} from "@mui/material";
+import {
+    Button,
+    FormControl,
+    FormHelperText,
+    Grid,
+    IconButton,
+    Input,
+    InputLabel,
+    TextField,
+    Tooltip
+} from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
@@ -15,6 +25,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import DialogContext from "@mui/material/Dialog/DialogContext";
+import Form from "../src/Form";
 
 const Home: NextPage = () => {
     const [open, setOpen] = React.useState(false);
@@ -126,25 +138,25 @@ const Home: NextPage = () => {
           <Dialog
               hideBackdrop
               fullWidth
-              maxWidth={'xs'}
+              maxWidth={'sm'}
               fullScreen={fullScreen}
               open={open}
               onClose={handleClose}
           >
-              <DialogTitle id="responsive-dialog-title">
-                  <Typography variant={'h2'}>New Address</Typography>
+              <DialogTitle >
+                  New Address
               </DialogTitle>
               <DialogContent>
-
+                  <Form />
               </DialogContent>
               <DialogActions>
-                  <Grid container spacing={2} xs={9}>
-                      <Grid item xs={4}>
+                  <Grid container spacing={2} >
+                      <Grid item xs={5}>
                           <Button fullWidth disableElevation variant="outlined" autoFocus onClick={handleClose}>
                               Cancel
                           </Button>
                       </Grid>
-                      <Grid item xs={8}>
+                      <Grid item xs={7}>
                           <Button fullWidth disableElevation  variant="contained" onClick={handleClose} autoFocus>
                               Save
                           </Button>
@@ -160,6 +172,9 @@ const Home: NextPage = () => {
                   </IconButton>
               </Tooltip>
           </Typography>
+
+          <Form />
+
 
       </Box>
     </Container>
