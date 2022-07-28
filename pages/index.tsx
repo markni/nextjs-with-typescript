@@ -115,7 +115,7 @@ const Home: NextPage = () => {
                     Hint (small grey text, used to display brand name etc)
                 </Typography>
 
-                <Typography variant={'subtitle1'} color={'gray2.main'} >
+                <Typography variant={'subtitle1'} sx={{fontWeight: 600}}  color={'gray1.main'} >
                     Powered by
                 </Typography>
 
