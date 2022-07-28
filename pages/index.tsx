@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { NextPage } from 'next';
+import type {NextPage} from 'next';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -7,18 +7,19 @@ import Link from '../src/Link';
 import QuestionMark from '@mui/icons-material/QuestionMark';
 
 import {
-    Button,
+    Button, Checkbox,
     FormControl,
-    FormHelperText,
+    FormControlLabel, FormGroup,
+    FormHelperText, FormLabel,
     Grid,
     IconButton,
     Input,
-    InputLabel,
+    InputLabel, Radio, RadioGroup, Stack,
     TextField,
     Tooltip
 } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import {useTheme} from '@mui/material/styles';
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -40,145 +41,175 @@ const Home: NextPage = () => {
         setOpen(false);
     };
 
-  return (
-    <Container maxWidth="xs">
-      <Box
-        sx={{
-          my: 4,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-            gap: '8px'
-        }}
-      >
-        <Typography variant="subtitle1" >
-          MUI v5 + Next.js with TypeScript example
-        </Typography>
+    return (
+        <Container maxWidth="xs">
+            <Stack
+                mb={2}
+                spacing={2}
+                sx={{
+                    alignItems: 'flex-start'
+                }}
+            >
+                <Typography variant="subtitle1">
+                    MUI v5 + Next.js with TypeScript example
+                </Typography>
 
 
-          <Typography variant={"h2"}  >
-              Combined Next + Mui Links
-          </Typography>
+                <Typography variant={"h2"}>
+                    Combined Next + Mui Links
+                </Typography>
 
-          <Link href="/about" color="secondary">
-              <Typography  >
-                  Just a link
-              </Typography>
-          </Link>
-
-
-          <Button variant="contained" disableElevation color={'primary'} fullWidth>Primary</Button>
-          <Button variant="outlined" disableElevation color={'primary'} fullWidth>Primary outlined</Button>
-          <Button variant="contained" disableElevation color={'primary'} disabled fullWidth>Disabled</Button>
-          <Button variant="contained" disableElevation color={'tertiary'} fullWidth>Tertiary (custom color)</Button>
+                <Link href="/about" color="secondary">
+                    <Typography>
+                        Just a link
+                    </Typography>
+                </Link>
 
 
-          <Button variant="contained" disableElevation color={'tertiary'} >Apply</Button>
+                <Button variant="contained" disableElevation color={'primary'} fullWidth>Primary</Button>
+                <Button variant="outlined" disableElevation color={'primary'} fullWidth>Primary outlined</Button>
+                <Button variant="contained" disableElevation color={'primary'} disabled fullWidth>Disabled</Button>
+                <Button variant="contained" disableElevation color={'tertiary'} fullWidth>Tertiary (custom
+                    color)</Button>
 
 
-          <Typography >
-              Regular Text
-          </Typography>
+                <Button variant="contained" disableElevation color={'tertiary'}>Apply</Button>
+                <Button variant="contained" disableElevation color={'gray2'}>Remove</Button>
 
-          <Typography color={'secondary'} >
-              Regular Text with secondary color
-          </Typography>
+                <Typography variant={'h2'}>
+                    Header 2 (used on left top of each page)
+                </Typography>
 
-          <Typography variant={'highlight'}  >
-              Highlight variant (used to display discount in design)
-          </Typography>
+                <Typography variant={'total'}>
+                    Total: $30.00 (total variant)
+                </Typography>
 
-          <Typography color={'highlight.main'}>
-              Just the highlight color
-          </Typography>
+                <Typography>
+                    Regular Text
+                </Typography>
 
-          <Typography variant={'total'} >
-              Total: $30.00 (total variant)
-          </Typography>
+                <Typography color={'secondary'}>
+                    Regular Text with secondary color
+                </Typography>
 
-          <Typography variant={'h2'} >
-              Header 2 (used on left top of each page)
-          </Typography>
+                <Typography color={'highlight.main'}>
+                    Just the highlight color
+                </Typography>
 
-          <Typography variant={'subtitle1'} >
-              Subtitle 1 (used on left top of each page)
-          </Typography>
-
-          <Typography variant={'subtitle2'} >
-              Subtitle 2 (used in two column design, title for each sections)
-          </Typography>
-
-          <Typography variant={'hint'} >
-              Hint (small grey text, used to display brand name etc)
-          </Typography>
+                <Typography variant={'highlight'}>
+                    Highlight variant (used to display discount in design)
+                </Typography>
 
 
-          <Typography color={'error'} variant={'button'} >
-              Delete address
-          </Typography>
 
 
-          <Typography color={'secondary'} variant={'button'} >
-              Add discount
-          </Typography>
+                <Typography variant={'subtitle1'}>
+                    Subtitle 1 (used on left top of each page)
+                </Typography>
 
-          <Typography color={'primary'} variant={'button'} >
-              Edit
-          </Typography>
+                <Typography variant={'subtitle2'}>
+                    Subtitle 2 (used in two column design, title for each sections)
+                </Typography>
 
-          <Typography sx={{textDecoration: 'none'}} color={'primary'} variant={'button'} >
-              Edit
-          </Typography>
+                <Typography variant={'hint'}>
+                    Hint (small grey text, used to display brand name etc)
+                </Typography>
 
-          <Button variant="outlined" onClick={handleClickOpen}>
-              Responsive dialog example
-          </Button>
-
-          <Dialog
-              hideBackdrop
-              fullWidth
-              maxWidth={'sm'}
-              fullScreen={fullScreen}
-              open={open}
-              onClose={handleClose}
-          >
-              <DialogTitle >
-                  New Address
-              </DialogTitle>
-              <DialogContent>
-                  <Form />
-              </DialogContent>
-              <DialogActions>
-                  <Grid container spacing={2} >
-                      <Grid item xs={5}>
-                          <Button fullWidth disableElevation variant="outlined" autoFocus onClick={handleClose}>
-                              Cancel
-                          </Button>
-                      </Grid>
-                      <Grid item xs={7}>
-                          <Button fullWidth disableElevation  variant="contained" onClick={handleClose} autoFocus>
-                              Save
-                          </Button>
-                      </Grid>
-                  </Grid>
-              </DialogActions>
-          </Dialog>
-
-          <Typography>Click on the icon to see tooltip
-              <Tooltip enterTouchDelay={0} title="It’s really simple to understand how card linking works.">
-                  <IconButton>
-                      <QuestionMark />
-                  </IconButton>
-              </Tooltip>
-          </Typography>
-
-          <Form />
+                <Typography variant={'subtitle1'} color={'gray2.main'} >
+                    Powered by
+                </Typography>
 
 
-      </Box>
-    </Container>
-  );
+                <Typography color={'error'} variant={'button'}>
+                    Delete address
+                </Typography>
+
+
+                <Typography color={'secondary'} variant={'button'}>
+                    Add discount
+                </Typography>
+
+                <Typography color={'secondary'} sx={{fontWeight: 600, fontSize: 12}} variant={'button'}>
+                    Terms and Conditions
+                </Typography>
+
+
+                <Typography color={'info.main'} variant={'button'}>
+                    Privacy Policy
+                </Typography>
+
+                <Typography color={'primary'} variant={'button'}>
+                    Edit
+                </Typography>
+
+                <Typography sx={{textDecoration: 'none'}} color={'primary'} variant={'button'}>
+                    Edit
+                </Typography>
+
+                <Button variant="outlined" onClick={handleClickOpen}>
+                    Responsive dialog example
+                </Button>
+
+                <Dialog
+                    hideBackdrop
+                    fullWidth
+                    maxWidth={'sm'}
+                    fullScreen={fullScreen}
+                    open={open}
+                    onClose={handleClose}
+                >
+                    <DialogTitle>
+                        New Address
+                    </DialogTitle>
+                    <DialogContent>
+                        <Form/>
+                    </DialogContent>
+                    <DialogActions>
+                        <Grid container spacing={2}>
+                            <Grid item xs={5}>
+                                <Button fullWidth disableElevation variant="outlined" autoFocus onClick={handleClose}>
+                                    Cancel
+                                </Button>
+                            </Grid>
+                            <Grid item xs={7}>
+                                <Button fullWidth disableElevation variant="contained" onClick={handleClose} autoFocus>
+                                    Save
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </DialogActions>
+                </Dialog>
+
+                <Typography>Hover on the icon to see tooltip
+                    {/*(note the enterTouchDelay prop for mobile)*/}
+                    <Tooltip enterTouchDelay={0} title="It’s really simple to understand how card linking works.">
+                        <IconButton>
+                            <QuestionMark/>
+                        </IconButton>
+                    </Tooltip>
+                </Typography>
+
+                <Form/>
+
+                <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                    <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
+                </FormGroup>
+
+                <FormControl>
+                    <RadioGroup
+                        defaultValue="female"
+                        name="radio-buttons-group"
+                    >
+                        <FormControlLabel value="female" control={<Radio />} label="Female" />
+                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="other" control={<Radio />} label="Other" />
+                    </RadioGroup>
+                </FormControl>
+
+            </Stack>
+        </Container>
+    );
 };
 
 export default Home;

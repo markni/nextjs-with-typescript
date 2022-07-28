@@ -5,11 +5,15 @@ declare module '@mui/material/styles/createPalette' {
   interface Palette {
     tertiary: {main: string, contrastText: string};
     highlight: {main: string};
+    gray1: {main: string};
+    gray2: {main: string};
   }
 
   interface PaletteOptions {
     tertiary?: {main: string, contrastText: string};
     highlight: {main: string};
+    gray1: {main: string};
+    gray2: {main: string};
   }
 }
 
@@ -17,6 +21,8 @@ declare module "@mui/material" {
   interface ButtonPropsColorOverrides {
     tertiary: true;
     highlight: true;
+    gray1: true;
+    gray2: true;
   }
 }
 
@@ -27,7 +33,6 @@ declare module '@mui/material/styles' {
     hint: React.CSSProperties;
   }
 
-  // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     total?: React.CSSProperties;
     highlight?: React.CSSProperties;
@@ -35,7 +40,6 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Update the Typography's variant prop options
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     total: true;
@@ -45,7 +49,6 @@ declare module '@mui/material/Typography' {
 }
 
 
-// Create a theme instance.
 const theme = createTheme({
   components: {
     MuiTypography: {
@@ -121,7 +124,25 @@ const theme = createTheme({
           }
         }
       }
-    }
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          "&.Mui-checked": {
+            color: 'rgba(0, 0, 0, 0.6)',
+          }
+        }
+      }
+    },
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          "&.Mui-checked": {
+            color: 'rgba(0, 0, 0, 0.54)',
+          }
+        }
+      }
+    },
   },
   palette: {
     primary: {
@@ -130,20 +151,29 @@ const theme = createTheme({
     secondary: {
       main: '#1F7F79',
     },
+    info: {
+      main: '#016FD0'
+    },
 
+    //custom colors
     tertiary: { //color for third button style
       main: '#E2F7F2',
       contrastText: '#000000',
     },
-
     highlight: {
       main: '#4EAE57',
+    },
+    gray1: {
+      main: '#B2B2B2',
+    },
+    gray2: {
+      main: '#F0F0F0',
     },
   },
   typography: {
     fontFamily: 'Poppins',
     h1: undefined,
-    h2: { // use for title of each page, we only use h3 for now
+    h2: { // use for title of each page, we only use h2 for now
       fontWeight: 700,
       fontSize: 18,
       lineHeight: 1.5,
@@ -168,7 +198,7 @@ const theme = createTheme({
       fontWeight: 400,
       lineHeight: 1,
     },
-    subtitle2: { //row titles, section titles
+    subtitle2: { //row titles, section titles etc
       fontSize: 14,
       lineHeight: 1.5,
       color: '#757575',
