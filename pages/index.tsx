@@ -5,21 +5,24 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from '../src/Link';
 import QuestionMark from '@mui/icons-material/QuestionMark';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import {
-    Button, Checkbox,
+    Accordion, AccordionDetails,
+    AccordionSummary,
+    Button, Checkbox, Collapse, Divider,
     FormControl,
     FormControlLabel, FormGroup,
     FormHelperText, FormLabel,
     Grid,
     IconButton,
     Input,
-    InputLabel, Radio, RadioGroup, Stack,
+    InputLabel, List, ListItem, ListItemIcon, ListItemText, Paper, Radio, RadioGroup, Stack,
     TextField,
     Tooltip
 } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {useTheme} from '@mui/material/styles';
+import {styled, useTheme} from '@mui/material/styles';
 
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -28,7 +31,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContext from "@mui/material/Dialog/DialogContext";
 import Form from "../src/Form";
-
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 const Home: NextPage = () => {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
@@ -41,14 +45,13 @@ const Home: NextPage = () => {
         setOpen(false);
     };
 
+
     return (
         <Container maxWidth="xs">
             <Stack
                 mb={2}
                 spacing={2}
-                sx={{
-                    alignItems: 'flex-start'
-                }}
+                alignItems={'flex-start'}
             >
                 <Typography variant="subtitle1">
                     MUI v5 + Next.js with TypeScript example
@@ -66,15 +69,15 @@ const Home: NextPage = () => {
                 </Link>
 
 
-                <Button variant="contained" disableElevation color={'primary'} fullWidth>Primary</Button>
-                <Button variant="outlined" disableElevation color={'primary'} fullWidth>Primary outlined</Button>
-                <Button variant="contained" disableElevation color={'primary'} disabled fullWidth>Disabled</Button>
-                <Button variant="contained" disableElevation color={'tertiary'} fullWidth>Tertiary (custom
+                <Button variant="contained" color={'primary'} fullWidth>Primary</Button>
+                <Button variant="outlined" color={'primary'} fullWidth>Primary outlined</Button>
+                <Button variant="contained" color={'primary'} disabled fullWidth>Disabled</Button>
+                <Button variant="contained" color={'tertiary'} fullWidth>Tertiary (custom
                     color)</Button>
 
 
-                <Button variant="contained" disableElevation color={'tertiary'}>Apply</Button>
-                <Button variant="contained" disableElevation color={'gray2'}>Remove</Button>
+                <Button variant="contained" color={'tertiary'}>Apply</Button>
+                <Button variant="contained" color={'gray2'}>Remove</Button>
 
                 <Typography variant={'h2'}>
                     Header 2 (used on left top of each page)
@@ -151,9 +154,6 @@ const Home: NextPage = () => {
                 </Button>
 
                 <Dialog
-                    hideBackdrop
-                    fullWidth
-                    maxWidth={'sm'}
                     fullScreen={fullScreen}
                     open={open}
                     onClose={handleClose}
@@ -167,12 +167,12 @@ const Home: NextPage = () => {
                     <DialogActions>
                         <Grid container spacing={2}>
                             <Grid item xs={5}>
-                                <Button fullWidth disableElevation variant="outlined" autoFocus onClick={handleClose}>
+                                <Button fullWidth variant="outlined" autoFocus onClick={handleClose}>
                                     Cancel
                                 </Button>
                             </Grid>
                             <Grid item xs={7}>
-                                <Button fullWidth disableElevation variant="contained" onClick={handleClose} autoFocus>
+                                <Button fullWidth variant="contained" onClick={handleClose} autoFocus>
                                     Save
                                 </Button>
                             </Grid>
@@ -181,8 +181,8 @@ const Home: NextPage = () => {
                 </Dialog>
 
                 <Typography>Hover on the icon to see tooltip
-                    {/*(note the enterTouchDelay prop for mobile)*/}
-                    <Tooltip enterTouchDelay={0} title="It’s really simple to understand how card linking works.">
+
+                    <Tooltip title="It’s really simple to understand how card linking works.">
                         <IconButton>
                             <QuestionMark/>
                         </IconButton>
@@ -196,19 +196,72 @@ const Home: NextPage = () => {
                     <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
                 </FormGroup>
 
-                <FormControl>
-                    <RadioGroup
-                        defaultValue="female"
-                        name="radio-buttons-group"
-                    >
-                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                        <FormControlLabel value="other" control={<Radio />} label="Other" />
-                    </RadioGroup>
-                </FormControl>
+
 
             </Stack>
+
+            {/*don't use space prop here, bug*/}
+            <Stack  divider={<Divider sx={{margin:'16px 0'}} />}>
+                <Grid container spacing={2} sx={{paddingRight: '24px'}}>
+                    <Grid item xs={4}>
+                        <Typography variant={'subtitle2'}> Contact </Typography>
+                    </Grid>
+                    <Grid item xs={7}>
+                        <Typography variant={'subtitle2'}> Shakira@skipify.com </Typography>
+                    </Grid>
+                </Grid>
+
+
+                <Accordion>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                    >
+                        <Grid container spacing={2}>
+                            <Grid item xs={4}>
+                                <Typography variant={'subtitle2'}> Delivery </Typography>
+                            </Grid>
+                            <Grid item xs={7}>
+                                <Typography >
+                                    Standard, Free
+                                </Typography>
+                                <Typography >
+                                    Arrives Jul 31 - Aug 3
+                                </Typography>
+                            </Grid>
+
+                        </Grid>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Grid container spacing={2}>
+                            <Grid item xs={4}>
+                            </Grid>
+                            <Grid item xs={7}>
+                                <FormControl>
+                                    <RadioGroup
+                                        defaultValue="standard"
+                                        name="radio-buttons-group"
+                                    >
+                                        <FormControlLabel value="standard" control={<Radio />} label="Standard, Free " />
+                                        <FormControlLabel value="express" control={<Radio />} label="Express, $9.99" />
+                                        <FormControlLabel value="local" control={<Radio />} label="Local Pickup, Free" />
+                                    </RadioGroup>
+                                </FormControl>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </AccordionDetails>
+                </Accordion>
+
+            </Stack>
+
+
+            <Box mb={10} ></Box>
+
+
         </Container>
+
     );
 };
 

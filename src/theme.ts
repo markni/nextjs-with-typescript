@@ -56,8 +56,8 @@ const theme = createTheme({
         variantMapping: {
           subtitle1: 'div', // https://css-tricks.com/html-for-subheadings-and-headings/
           subtitle2: 'div',
-          body1: 'span',
-          body2: 'span',
+          body1: 'p',
+          body2: 'p',
         },
       },
     },
@@ -69,6 +69,11 @@ const theme = createTheme({
           padding: 16,
           border: '1px solid #EAEAEA'
         },
+      },
+      defaultProps: {
+        hideBackdrop: true,
+        fullWidth: true,
+        maxWidth: 'sm'
       }
     },
     MuiDialogTitle: {
@@ -105,23 +110,33 @@ const theme = createTheme({
           border: '1px solid #EAEAEA',
           padding: 16,
         }
+      },
+      defaultProps: {
+        enterTouchDelay: 0
       }
     },
     MuiButton: {
+      defaultProps: {
+        disableElevation: true,
+        size: 'large'
+      },
       styleOverrides: {
         root: {
           textTransform: 'none',
+          textDecoration: 'none',
+          ":disabled": {
+            color: '#FFFFFF',
+            background: '#B2B2B2'
+          }
+        },
+        sizeLarge: {
+          //so far in design we only see large buttons, add more if needed
           borderRadius: 44,
           height: 44,
           fontSize: 14,
           fontWeight: 700,
           lineHeight: 1.5,
           padding: '9px 20.5px',
-          textDecoration: 'none',
-          ":disabled": {
-            color: '#FFFFFF',
-            background: '#B2B2B2'
-          }
         }
       }
     },
@@ -143,6 +158,53 @@ const theme = createTheme({
         }
       }
     },
+
+    MuiAccordion: {
+      defaultProps: {
+        elevation: 0,
+      },
+      styleOverrides: {
+        root: {
+          '&::before': {
+            height: 0
+          },
+          "&.Mui-expanded": {
+            marginBottom: 0,
+            marginTop: 0,
+
+          }
+        },
+      }
+    },
+
+    MuiAccordionSummary: {
+      styleOverrides:{
+        root:{
+          padding: 0,
+          "&.Mui-expanded": {
+            minHeight: 48,
+            marginBottom: 0,
+          },
+          alignItems: 'flex-start'
+        },
+        content: {
+          "&.Mui-expanded": {
+            marginBottom: 12,
+            marginTop: 12,
+          }
+        }
+
+      },
+    },
+
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          padding: '0 24px 0 0'
+        }
+      }
+    }
+
   },
   palette: {
     primary: {
